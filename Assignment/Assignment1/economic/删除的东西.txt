@@ -1,0 +1,26 @@
+列：
+	Number of non-employing businesses	无雇员企业数量
+	Number of employing businesses: 1-4 employees	有雇员企业（1–4人）数量
+	Number of employing businesses: 5-19 employees	有雇员企业（5–19人）数量
+	Number of employing businesses: 20 or more employees
+	Number of non-employing business entries	新增无雇员企业数
+	Number of employing business entries: 1-4 employees	新增1–4人企业数
+	Number of employing business entries: 5-19 employees	新增5–19人企业数
+	Number of employing business entries: 20 or more employees	新增20+人企业数
+	Number of non-employing business exits	退出无雇员企业数
+	Number of employing business exits: 1-4 employees	退出1–4人企业数
+	Number of employing business exits: 5-19 employees	退出5–19人企业数
+	Number of employing business exits: 20 or more employees	退出20+人企业数
+	Value of private sector houses ($m)	私营独立屋建筑价值（百万澳元）
+	Value of private sector dwellings excluding houses ($m)	私营非独立屋建筑价值（百万澳元）
+	Total value of private sector dwelling units ($m)	私营住宅总价值（百万澳元）
+	Number of business entries with turnover...
+	Number of business exits with turnover...
+	Crops - total gross value ($m)	作物产值（百万澳元）
+	Livestock slaughtered and other disposals - total gross value ($m)
+	Houses / Townhouses / Apartments - additions/removals/total (no.)
+	独立屋 / 联排别墅 / 公寓 新增/拆除/总数
+
+
+
+

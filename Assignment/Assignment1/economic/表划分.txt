@@ -1,0 +1,229 @@
+企业：
+	total number of businesses	企业总数
+	total number of business entries	新注册企业数
+	total number of business exits	注销企业数
+	number of businesses with turnover of zero to less than $50k	营业额 0 至 <50k 的企业数
+	number of businesses with turnover of $50k to less than $200k	营业额 50k 至 <200k 的企业数
+	number of businesses with turnover of $200k to less than $2m	营业额 200k 至 <2m 的企业数
+	number of businesses with turnover of $2m to less than $5m	营业额 2m 至 <5m 的企业数
+	number of businesses with turnover of $5m to less than $10m	营业额 5m 至 <10m 的企业数
+	number of businesses with turnover of $10m or more	营业额 ≥10m 的企业数
+
+
+CREATE TABLE IF NOT EXISTS facts_businesses (
+  id              BIGSERIAL PRIMARY KEY,
+  region_code     varchar(20),          -- 如 State/LGA/SAx/Postcode 等
+  period          NUMERIC,          
+  Total_number_of_businesses numeric,
+  Total_number_of_business_entries numeric,
+  Total_number_of_business_exits numeric,
+  Number_of_businesses_with_turnover_0_50k numeric,
+  Number_of_businesses_with_turnover_50k_200k numeric,
+  Number_of_businesses_with_turnover_200k_2m numeric,
+  Number_of_businesses_with_turnover_2m_5m numeric,
+  Number_of_businesses_with_turnover_5m_10m numeric,
+  Number_of_businesses_with_turnover_10m_more numeric
+);
+CREATE INDEX ON facts_businesses (region_code);
+CREATE INDEX ON facts_businesses (period);
+
+按行业划分企业：
+	agriculture, forestry and fishing (no.)	农林渔业企业数量
+	mining (no.)	采矿业企业数量
+	manufacturing (no.)	制造业企业数量
+	electricity, gas, water and waste services (no.)	电力、燃气、水和废弃物处理企业数量
+	construction (no.)	建筑业企业数量
+	wholesale trade (no.)	批发贸易企业数量
+	retail trade (no.)	零售贸易企业数量
+	accommodation and food services (no.)	住宿和餐饮服务企业数量
+	transport, postal and warehousing (no.)	交通、邮政和仓储企业数量
+	information media and telecommunications (no.)	信息媒体和通信企业数量
+	financial and insurance services (no.)	金融和保险服务企业数量
+	rental, hiring and real estate services (no.)	租赁、雇用和房地产服务企业数量
+	professional, scientific and technical services (no.)	专业、科学和技术服务企业数量
+	administrative and support services (no.)	行政和支持服务企业数量
+	public administration and safety (no.)	公共管理与安全企业数量
+	education and training (no.)	教育和培训企业数量
+	health care and social assistance (no.)	医疗和社会援助企业数量
+	arts and recreation services (no.)	艺术和娱乐服务企业数量
+	other services (no.)	其他服务企业数量
+	currently unknown (no.)	当前未知类别企业数量
+
+	CREATE TABLE facts_businesses_by_industry (
+  id              BIGSERIAL PRIMARY KEY,
+  region_code     varchar(20),
+  period                                  NUMERIC,
+  agriculture_forestry_and_fishing_no     numeric,
+  mining_no                               numeric,
+  manufacturing_no                        numeric,
+  electricity_gas_water_and_waste_services_no numeric,
+  construction_no                         numeric,
+  wholesale_trade_no                      numeric,
+  retail_trade_no                         numeric,
+  accommodation_and_food_services_no      numeric,
+  transport_postal_and_warehousing_no     numeric,
+  information_media_and_telecommunications_no numeric,
+  financial_and_insurance_services_no     numeric,
+  rental_hiring_and_real_estate_services_no numeric,
+  professional_scientific_and_technical_services_no numeric,
+  administrative_and_support_services_no  numeric,
+  public_administration_and_safety_no     numeric,
+  education_and_training_no               numeric,
+  health_care_and_social_assistance_no    numeric,
+  arts_and_recreation_services_no         numeric,
+  other_services_no                       numeric,
+  currently_unknown_no                    numeric
+);
+CREATE INDEX ON facts_businesses_by_industry (region_code);
+CREATE INDEX ON facts_businesses_by_industry (period);
+
+住宅：
+	private sector houses (no.)	私营部门独立住宅数量
+	private sector dwellings excluding houses (no.)	私营部门非独立住宅数量
+	total private sector dwelling units (no.)	私营部门住房单元总数
+	total dwelling units (no.)	住房单元总数
+	total value of private sector dwelling units ($m)	私营部门住房单元总价值（百万）
+	value of residential building ($m)	住宅建筑价值（百万）
+	value of non-residential building ($m)	非住宅建筑价值（百万）
+	value of total building ($m)	建筑总价值（百万）
+	number of established house transfers (no.)	已建成独立住宅交易数量
+	median price of established house transfers ($)	已建成独立住宅交易中位价
+	number of attached dwelling transfers (no.)	附属住宅交易数量
+	median price of attached dwelling transfers ($)	附属住宅交易中位价
+
+CREATE TABLE facts_housing (
+  id              BIGSERIAL PRIMARY KEY,
+  region_code     varchar(20),
+  period                                  NUMERIC,
+  private_sector_houses_no                              numeric,
+  private_sector_dwellings_excluding_houses_no          numeric,
+  total_private_sector_dwelling_units_no                numeric,
+  total_dwelling_units_no                               numeric,
+  total_value_of_private_sector_dwelling_units_m        numeric,
+  value_of_residential_building_m                       numeric,
+  value_of_non_residential_building_m                   numeric,
+  value_of_total_building_m                             numeric,
+  number_of_established_house_transfers_no              numeric,
+  median_price_of_established_house_transfers_dollars   numeric,
+  number_of_attached_dwelling_transfers_no              numeric,
+  median_price_of_attached_dwelling_transfers_dollars   numeric
+);
+
+CREATE INDEX  ON facts_housing (region_code);
+CREATE INDEX  ON facts_housing (period);
+
+破产：
+	debtors entering business related personal insolvencies (no.)	涉及企业的个人破产人数
+	debtors entering non-business related personal insolvencies (no.)	非企业相关个人破产人数
+	total debtors entering personal insolvencies (no.)	个人破产总人数
+	managers (no.)	管理人员数量
+	professionals (no.)	专业人员数量
+	technicians and trades workers (no.)	技术与技工数量
+	community and personal service workers (no.)	社区与个人服务人员数量
+	clerical and administrative workers (no.)	文职与行政人员数量
+	sales workers (no.)	销售人员数量
+	machinery operators and drivers (no.)	机械操作员与司机数量
+	labourers (no.)	普工数量
+	debtors with other or unknown occupations (no.)	其他或未知职业的破产者数量
+
+	CREATE TABLE facts_insolvency (
+  id              BIGSERIAL PRIMARY KEY,
+  region_code     varchar(20),
+  period                                  NUMERIC,
+  debtors_entering_business_related_personal_insolvencies_no     numeric,
+  debtors_entering_non_business_related_personal_insolvencies_no numeric,
+  total_debtors_entering_personal_insolvencies_no                numeric,
+  managers_no                                                    numeric,
+  professionals_no                                               numeric,
+  technicians_and_trades_workers_no                              numeric,
+  community_and_personal_service_workers_no                      numeric,
+  clerical_and_administrative_workers_no                         numeric,
+  sales_workers_no                                               numeric,
+  machinery_operators_and_drivers_no                             numeric,
+  labourers_no                                                   numeric,
+  debtors_with_other_or_unknown_occupations_no                   numeric
+);
+CREATE INDEX  ON facts_insolvency (region_code);
+CREATE INDEX  ON facts_insolvency (period);
+
+农业：
+	area of holding - total area (ha)	农场总面积（公顷）
+	dairy cattle - total (no.)	奶牛总数
+	meat cattle - total (no.)	肉牛总数
+	sheep and lambs - total (no.)	绵羊和羔羊总数
+	pigs - total (no.)	猪总数
+	meat chickens - total (no.)	肉鸡总数
+	broadacre crops - total area (ha)	大宗作物种植面积（公顷）
+	vegetables - total area (ha)	蔬菜种植面积（公顷）
+	orchard fruit trees and nut trees (produce intended for sale) - total area - (ha)	果园果树和坚果树种植面积（公顷）
+	agricultural production - total gross value ($m)	农业生产总产值（百万）
+
+	CREATE TABLE facts_agriculture (
+  id              BIGSERIAL PRIMARY KEY,
+  region_code     varchar(20),
+  period                                  NUMERIC,
+  area_of_holding_total_area_ha                    numeric,
+  dairy_cattle_total_no                            numeric,
+  meat_cattle_total_no                             numeric,
+  sheep_and_lambs_total_no                         numeric,
+  pigs_total_no                                    numeric,
+  meat_chickens_total_no                           numeric,
+  broadacre_crops_total_area_ha                    numeric,
+  vegetables_total_area_ha                         numeric,
+  orchard_fruit_trees_and_nut_trees_total_area_ha  numeric,
+  agricultural_production_total_gross_value_m      numeric
+);
+CREATE INDEX  ON facts_agriculture (region_code);
+CREATE INDEX  ON facts_agriculture (period);
+
+就业：
+	agriculture, forestry and fishing (%)	农林渔业从业比例
+	mining (%)	采矿业从业比例
+	manufacturing (%)	制造业从业比例
+	electricity, gas, water and waste services (%)	电力燃气水和废弃物处理业从业比例
+	construction (%)	建筑业从业比例
+	wholesale trade (%)	批发贸易从业比例
+	retail trade (%)	零售贸易从业比例
+	accommodation and food services (%)	住宿餐饮服务从业比例
+	transport, postal and warehousing (%)	交通邮政仓储从业比例
+	information media and telecommunications (%)	信息媒体和通信从业比例
+	financial and insurance services (%)	金融和保险服务从业比例
+	rental, hiring and real estate services (%)	租赁雇用和房地产服务从业比例
+	professional, scientific and technical services (%)	专业科学和技术服务从业比例
+	administrative and support services (%)	行政和支持服务从业比例
+	public administration and safety (%)	公共管理与安全从业比例
+	education and training (%)	教育和培训从业比例
+	health care and social assistance (%)	医疗和社会援助从业比例
+	arts and recreation services (%)	艺术和娱乐服务从业比例
+	other services (%)	其他服务从业比例
+	industry of employment inadequately described or not stated (%)	行业未明确或未说明的从业比例
+	total persons employed aged 15 years and over (no.)	15岁及以上从业总人数
+
+	CREATE TABLE facts_employment (
+  id              BIGSERIAL PRIMARY KEY,
+  region_code     varchar(20),
+  period                                  NUMERIC,
+  agriculture_forestry_and_fishing_pct                             numeric,
+  mining_pct                                                       numeric,
+  manufacturing_pct                                                numeric,
+  electricity_gas_water_and_waste_services_pct                     numeric,
+  construction_pct                                                 numeric,
+  wholesale_trade_pct                                              numeric,
+  retail_trade_pct                                                 numeric,
+  accommodation_and_food_services_pct                              numeric,
+  transport_postal_and_warehousing_pct                             numeric,
+  information_media_and_telecommunications_pct                     numeric,
+  financial_and_insurance_services_pct                             numeric,
+  rental_hiring_and_real_estate_services_pct                       numeric,
+  professional_scientific_and_technical_services_pct               numeric,
+  administrative_and_support_services_pct                          numeric,
+  public_administration_and_safety_pct                             numeric,
+  education_and_training_pct                                       numeric,
+  health_care_and_social_assistance_pct                            numeric,
+  arts_and_recreation_services_pct                                 numeric,
+  other_services_pct                                               numeric,
+  industry_of_employment_inadequately_described_or_not_stated_pct  numeric,
+  total_persons_employed_15_years_and_over_no                      numeric
+);
+CREATE INDEX  ON facts_employment (region_code);
+CREATE INDEX  ON facts_employment (period);
